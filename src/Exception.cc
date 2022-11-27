@@ -1,2 +1,0 @@
-#include <pyinter/Exception.h>
-

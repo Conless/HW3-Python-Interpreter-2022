@@ -6,7 +6,7 @@
         {
             "label": "gcc build active file",
             "type": "shell",
-            "command": "sh ${workspaceFolder}/build.sh",
+            "command": "sh ${workspaceFolder}/build.zsh",
             "args": [
  
             ],

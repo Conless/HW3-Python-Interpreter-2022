@@ -1,25 +1,27 @@
 #ifndef APPLE_PIE_SCOPE_H
 #define APPLE_PIE_SCOPE_H
 
-#include <map>
+#include <cstring>
 #include <string>
+#include <unordered_map>
 
-class Scope {
+#include "Python3BaseVisitor.h"
 
-    private:
-        std::map<std::string, int> varTable;
+struct QueryResult {
+    bool exist;
+    antlrcpp::Any data;
 
-    public:
-        Scope(): varTable() {}
-        void varRegister(const std::string& varName, int varData) {
-            varTable[varName] = varData;
-        }    
-
-        std::pair<bool, int> varQuery(const std::string& varName) const {
-            auto it = varTable.find(varName);
-            if (it == varTable.end()) return std::make_pair(false, 0);
-            return std::make_pair(true, it->second);
-        }
+    QueryResult(bool exist, antlrcpp::Any data) : exist(exist), data(data) { }
 };
 
-#endif //APPLE_PIE_SCOPE_H
+class Scope {
+  private:
+    std::unordered_map<std::string, antlrcpp::Any> var_table;
+
+  public:
+    Scope() : var_table() {}
+    void VarRegister(const std::string &var_name, antlrcpp::Any var_data);
+    QueryResult VarQuery(const std::string &var_name) const;
+};
+
+#endif // APPLE_PIE_SCOPE_H

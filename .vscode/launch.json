@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             //	去 bin 文件夹找可执行文件
-            "program": "${workspaceFolder}/build/code",
+            "program": "${workspaceFolder}/bin/pyinter",
             //	每次执行命令行参数在argc中输入
             "args": [
                 "<test.in"
