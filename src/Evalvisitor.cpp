@@ -90,10 +90,10 @@ antlrcpp::Any EvalVisitor::visitArith_expr(Python3Parser::Arith_exprContext *ctx
         return visitTerm(term_array[0]);
     else {
         std::vector<antlrcpp::Any> num_array;
-        for (int i = 0; i < term_array.size(); ++i)
+        for (int i = 0; i < term_array.size(); i++)
             num_array.push_back(visitTerm(term_array[i]));
         antlrcpp::Any num_res = num_array[0];
-        for (int i = 1; i < term_array.size(); ++i) {
+        for (int i = 1; i < term_array.size(); i++) {
             std::string opt = opt_array[i - 1]->getText();
             if (opt == "+")
                 num_res = num_res + num_array[i];
@@ -108,8 +108,9 @@ antlrcpp::Any EvalVisitor::visitArith_expr(Python3Parser::Arith_exprContext *ctx
 
 antlrcpp::Any EvalVisitor::visitTerm(Python3Parser::TermContext *ctx) {
     auto factorArray = ctx->factor();
-    if (factorArray.size() == 1)
-        return visitFactor(factorArray[0]).as<int>();
+    if (factorArray.size() == 1) {
+        return visitFactor(factorArray[0]);
+    }
     auto opArray = ctx->muldivmod_op();
     int ret = visitFactor(factorArray[0]).as<int>();
     for (int i = 1; i < factorArray.size(); ++i) {
@@ -124,21 +125,26 @@ antlrcpp::Any EvalVisitor::visitTerm(Python3Parser::TermContext *ctx) {
     return ret;
 }
 
-antlrcpp::Any EvalVisitor::visitFactor(Python3Parser::FactorContext *ctx) { return visitChildren(ctx); }
+antlrcpp::Any EvalVisitor::visitFactor(Python3Parser::FactorContext *ctx) {
+    antlrcpp::Any ret = visitChildren(ctx);
+    // TODO
+    return std::move(ret);
+}
 
 antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) {
-    if (!ctx->trailer()) {
-        // std::cout << visitAtom(ctx->atom()).as<int>() << '\n';
-        return visitAtom(ctx->atom()).as<int>();
-    }
+    if (!ctx->trailer())
+        return visitAtom(ctx->atom());
     auto functionName = ctx->atom()->getText();
     // std::cout << functionName << '\n';
-    auto argsArray = visitTrailer(ctx->trailer()).as<std::vector<int>>();
+    auto argsArray = visitTrailer(ctx->trailer()).as<std::vector<antlrcpp::Any>>();
     if (argsArray.size() != 1) {
         throw Exception(functionName, INVALID_FUNC_CALL);
     }
     if (functionName == "print") {
-        std::cout << argsArray[0] << std::endl;
+        if (argsArray[0].is<double>())
+            printf("%.6lf\n", argsArray[0].as<double>());
+        else if (argsArray[0].is<int>())
+            printf("%d\n", argsArray[0].as<int>());
         return 0;
     }
     throw Exception("", UNIMPLEMENTED);
@@ -147,7 +153,7 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
 antlrcpp::Any EvalVisitor::visitTrailer(Python3Parser::TrailerContext *ctx) {
     if (ctx->arglist())
         return visitArglist(ctx->arglist());
-    return std::vector<int>();
+    return std::move(std::vector<antlrcpp::Any>());
 }
 
 antlrcpp::Any EvalVisitor::visitAtom(Python3Parser::AtomContext *ctx) {
@@ -168,7 +174,7 @@ antlrcpp::Any EvalVisitor::visitTestlist(Python3Parser::TestlistContext *ctx) { 
 
 antlrcpp::Any EvalVisitor::visitArglist(Python3Parser::ArglistContext *ctx) {
     auto argumentArray = ctx->argument();
-    std::vector<int> retArray;
+    std::vector<antlrcpp::Any> retArray;
     for (auto ctx : argumentArray) {
         if (ctx->test().size() > 1)
             throw Exception("", UNIMPLEMENTED);

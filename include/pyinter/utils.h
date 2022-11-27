@@ -8,6 +8,8 @@ int stringToInt(const std::string &str);
 
 antlrcpp::Any stringToNum(const std::string &str);
 
+double ToDouble(const antlrcpp::Any &num);
+
 bool validateVarName(const std::string &str);
 
 #endif // APPLE_PIE_UTILS_H

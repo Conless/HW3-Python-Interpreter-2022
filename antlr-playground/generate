@@ -11,6 +11,6 @@ export CLASSPATH=".:antlr-4.11.1-complete.jar:$CLASSPATH"
 java -jar antlr-4.11.1-complete.jar Python3Lexer.g4
 java -jar antlr-4.11.1-complete.jar Python3Parser.g4
 javac *.java
-java org.antlr.v4.gui.TestRig Python3 file_input -ps python3.ps
+java org.antlr.v4.gui.TestRig Python3 file_input -gui
 rm *.class Python3ParserListener.java Python3ParserBaseListener.java Python3Parser.tokens Python3Parser.java Python3Parser.interp Python3Lexer.tokens Python3Lexer.java Python3Lexer.interp
 
