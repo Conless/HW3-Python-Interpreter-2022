@@ -13,7 +13,6 @@ include_directories(
 )
 
 set(src_dir
-        ${PROJECT_SOURCE_DIR}/src/calculation.cpp
         ${PROJECT_SOURCE_DIR}/src/Evalvisitor.cpp
         ${PROJECT_SOURCE_DIR}/src/exception.cpp
         ${PROJECT_SOURCE_DIR}/src/utils.cpp
@@ -48,10 +47,14 @@ add_library(antlr4-cpp-runtime ${antlr4_cpp_src})
 add_library(int2048-runtime ${int2048_src_dir})
 ### YOU CAN"T MODIFY THE CODE ABOVE
 
-add_executable(pyinter ${src_dir} ${python_src_dir})
+add_executable(code ${src_dir} ${python_src_dir})
 
-target_link_libraries(pyinter antlr4-cpp-runtime)
+target_link_libraries(code antlr4-cpp-runtime)
 
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+# add_executable(pyinter ${src_dir} ${python_src_dir})
 
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+# target_link_libraries(pyinter antlr4-cpp-runtime)
+
+# set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+
+# set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

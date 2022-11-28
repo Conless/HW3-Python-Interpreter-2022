@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/bin/pyinter",
             //	每次执行命令行参数在argc中输入
             "args": [
-                "<test.in"
+                "<./testcases/basic-testcases/test7.in"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

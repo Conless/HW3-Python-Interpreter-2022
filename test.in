@@ -1,1 +1,4 @@
-print(1+2.5)
+#Print Test
+print(65536)
+print(True)
+print(None)

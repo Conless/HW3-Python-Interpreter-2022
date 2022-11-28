@@ -19,7 +19,7 @@ class Scope {
     std::unordered_map<std::string, antlrcpp::Any> var_table;
 
   public:
-    Scope() : var_table() {}
+    Scope() { var_table.clear(); }
     void VarRegister(const std::string &var_name, antlrcpp::Any var_data);
     QueryResult VarQuery(const std::string &var_name) const;
 };
