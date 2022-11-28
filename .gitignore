@@ -2,8 +2,11 @@
 .idea/
 cmake-build-debug/
 build/
+bin/
+lib/
 gen/
-antlr-playground/.antlr
+antlr-playground/
+Apple-Pie-Interpreter/
 
 # Testcases
 testcases/hidden-testcases
