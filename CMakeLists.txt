@@ -45,7 +45,7 @@ set(pyinter_src_dir
         ${PROJECT_SOURCE_DIR}/src/utils.cpp
 )
 
-add_executable(code ${src_dir} ${python_src_dir})
+add_executable(code ${src_dir} ${pyinter_src_dir})
 
 target_link_libraries(code antlr4-cpp-runtime)
 
