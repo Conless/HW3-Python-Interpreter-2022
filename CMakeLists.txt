@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(python_interpreter)
 set(CMAKE_CXX_STANDARD 14)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}   -Ofast")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 include_directories(
         ${PROJECT_SOURCE_DIR}/generated/
         ${PROJECT_SOURCE_DIR}/third_party/
@@ -45,14 +45,14 @@ set(pyinter_src_dir
         ${PROJECT_SOURCE_DIR}/src/utils.cpp
 )
 
-add_executable(code ${src_dir} ${pyinter_src_dir})
+# add_executable(code ${src_dir} ${pyinter_src_dir})
 
-target_link_libraries(code antlr4-cpp-runtime)
+# target_link_libraries(code antlr4-cpp-runtime)
 
-# add_executable(pyinter ${src_dir} ${pyinter_src_dir})
+add_executable(pyinter ${src_dir} ${pyinter_src_dir})
 
-# target_link_libraries(pyinter antlr4-cpp-runtime)
+target_link_libraries(pyinter antlr4-cpp-runtime)
 
-# set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
-# set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

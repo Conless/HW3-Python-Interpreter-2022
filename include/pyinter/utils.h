@@ -30,6 +30,7 @@ antlrcpp::Any operator-(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
 antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);
 antlrcpp::Any operator/(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);
 antlrcpp::Any operator%(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);
+antlrcpp::Any divide(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);
 
 bool operator<(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);
 bool operator>(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);

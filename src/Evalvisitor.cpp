@@ -4,16 +4,38 @@
 
 int dfn = 0;
 
+Scope var_table, func_table;
+
+const int kFlowContinue = 1;
+const int kFlowBreak = 2;
+const int kFlowReturn = 3;
+
 antlrcpp::Any EvalVisitor::visitFile_input(Python3Parser::File_inputContext *ctx) { return visitChildren(ctx); }
 
 antlrcpp::Any EvalVisitor::visitFuncdef(Python3Parser::FuncdefContext *ctx) {
-    // no func def
-    return visitChildren(ctx);
+    OutputFunction(__func__);
+    std::string func_name = ctx->NAME()->getText();
+    Function func_data({visitParameters(ctx->parameters()).as<std::vector<std::pair<std::string, antlrcpp::Any>>>(), ctx->suite()});
+    func_table.VarRegister(func_name, func_data);
+    return {};
 }
 
 antlrcpp::Any EvalVisitor::visitParameters(Python3Parser::ParametersContext *ctx) {
-    // no func def
-    return visitChildren(ctx);
+    std::vector<std::pair<std::string, antlrcpp::Any>> para_array_init;
+    if (!ctx->typedargslist()) return para_array_init;
+    auto tfpdef_array = ctx->typedargslist()->tfpdef();
+    auto test_array = ctx->typedargslist()->test();
+    int fir_init = tfpdef_array.size() - test_array.size();
+    for (int i = 0; i < tfpdef_array.size(); i++) {
+        std::string var_name = tfpdef_array[i]->NAME()->getText();
+        antlrcpp::Any var_data;
+        if (i < fir_init)
+            var_data = {};
+        else
+            var_data = visitTest(test_array[i - fir_init]);
+        para_array_init.push_back(make_pair(var_name, var_data));
+    }
+    return para_array_init;
 }
 
 antlrcpp::Any EvalVisitor::visitStmt(Python3Parser::StmtContext *ctx) {
@@ -37,33 +59,34 @@ antlrcpp::Any EvalVisitor::visitExpr_stmt(Python3Parser::Expr_stmtContext *ctx) 
     if (ctx->augassign()) {
         std::string opt = ctx->augassign()->getText();
         std::string var_name = testlist_array[0]->getText();
-        auto var = scope.VarQuery(var_name);
+        auto var = var_table.VarQuery(var_name);
         auto num = visitTestlist(testlist_array[1]);
         if (!var.exist)
             throw Exception("", UNDEFINED);
+        // std::cout << opt << std::endl;
         if (opt == "+=") {
-            scope.VarRegister(var_name, var.data + num);
+            var_table.VarRegister(var_name, var.data + num);
         } else if (opt == "-=") {
-            scope.VarRegister(var_name, var.data - num);
+            var_table.VarRegister(var_name, var.data - num);
         } else if (opt == "*=") {
-            scope.VarRegister(var_name, var.data * num);
+            var_table.VarRegister(var_name, var.data * num);
         } else if (opt == "/=") {
-            scope.VarRegister(var_name, var.data / num);
+            var_table.VarRegister(var_name, var.data / num);
         } else if (opt == "//=") {
-            // scope.VarRegister(var_name, divide(scope.VarQuery(var_name).second, var_data));
+            var_table.VarRegister(var_name, divide(var.data, num));
         }
-        return scope.VarQuery(var_name).data;
+        return var_table.VarQuery(var_name).data;
     } else {
         if (testlist_array.size() == 1) {
             return visitTestlist(testlist_array[0]);
         } else if (testlist_array.size() == 2) {
             std::string var_name = testlist_array[0]->getText();
             antlrcpp::Any num = visitTestlist(testlist_array[1]);
-            // auto num = scope.VarQuery(num_name);
+            // auto num = var_table.VarQuery(num_name);
             // if (!validateVarName(var_name))
             //     throw Exception("", INVALID_VARNAME);
             // TODO
-            scope.VarRegister(var_name, num);
+            var_table.VarRegister(var_name, num);
         } else {
             // TODO
             throw Exception("", UNIMPLEMENTED);
@@ -74,6 +97,17 @@ antlrcpp::Any EvalVisitor::visitExpr_stmt(Python3Parser::Expr_stmtContext *ctx) 
 
 antlrcpp::Any EvalVisitor::visitFlow_stmt(Python3Parser::Flow_stmtContext *ctx) {
     OutputFunction(__func__);
+    if (ctx->continue_stmt())
+        return kFlowContinue;
+    if (ctx->break_stmt())
+        return kFlowBreak;
+    if (ctx->return_stmt()) {
+        antlrcpp::Any ret_data = {};
+        auto test_list = ctx->return_stmt()->testlist();
+        if (test_list)
+            ret_data = visitTestlist(test_list);
+        return std::make_pair(kFlowReturn, ret_data);
+    }
     return visitChildren(ctx);
 }
 
@@ -107,7 +141,24 @@ antlrcpp::Any EvalVisitor::visitWhile_stmt(Python3Parser::While_stmtContext *ctx
 
 antlrcpp::Any EvalVisitor::visitSuite(Python3Parser::SuiteContext *ctx) {
     OutputFunction(__func__);
-    return visitChildren(ctx);
+    if (ctx->simple_stmt())
+        return visit(ctx->simple_stmt());
+    auto Array = ctx->stmt();
+    for (int i = 0; i < Array.size(); ++i) {
+        antlrcpp::Any ret = visitStmt(Array[i]);
+        if (ret.is<int>()) {
+            if (ret.as<int>() == 1)
+                return 1;
+            if (ret.as<int>() == 2)
+                return 2;
+        }
+        if (ret.is<std::pair<int, antlrcpp::Any>>()) {
+            if (ret.as<std::pair<int, antlrcpp::Any>>().first == 3) {
+                return ret;
+            }
+        }
+    }
+    return {};
 }
 
 antlrcpp::Any EvalVisitor::visitTest(Python3Parser::TestContext *ctx) {
@@ -117,17 +168,35 @@ antlrcpp::Any EvalVisitor::visitTest(Python3Parser::TestContext *ctx) {
 
 antlrcpp::Any EvalVisitor::visitOr_test(Python3Parser::Or_testContext *ctx) {
     OutputFunction(__func__);
-    return visitChildren(ctx);
+    auto or_array = ctx->and_test();
+    if (or_array.size() == 1)
+        return visitAnd_test(or_array[0]);
+    for (int i = 0; i < or_array.size(); i++) {
+        if (visitAnd_test(or_array[i]).as<bool>())
+            return true;
+    }
+    return false;
 }
 
 antlrcpp::Any EvalVisitor::visitAnd_test(Python3Parser::And_testContext *ctx) {
     OutputFunction(__func__);
-    return visitChildren(ctx);
+    auto not_array = ctx->not_test();
+    if (not_array.size() == 1)
+        return visitNot_test(not_array[0]);
+    for (int i = 0; i < not_array.size(); i++) {
+        if (!visitNot_test(not_array[i]).as<bool>())
+            return false;
+    }
+    return true;
 }
 
 antlrcpp::Any EvalVisitor::visitNot_test(Python3Parser::Not_testContext *ctx) {
     OutputFunction(__func__);
-    return visitChildren(ctx);
+    if (ctx->NOT()) {
+        return !(visitNot_test(ctx->not_test()).as<bool>());
+    } else {
+        return visitComparison(ctx->comparison());
+    }
 }
 
 antlrcpp::Any EvalVisitor::visitComparison(Python3Parser::ComparisonContext *ctx) {
@@ -197,6 +266,8 @@ antlrcpp::Any EvalVisitor::visitTerm(Python3Parser::TermContext *ctx) {
             ret = ret * visitFactor(factorArray[i]).as<int>();
         else if (tmpOp == "/")
             ret = ret / visitFactor(factorArray[i]).as<int>();
+        else if (tmpOp == "%")
+            ret = ret % visitFactor(factorArray[i]).as<int>();
         else
             throw Exception("", UNIMPLEMENTED);
     }
@@ -217,12 +288,25 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
     auto functionName = ctx->atom()->getText();
     // std::cout << functionName << '\n';
     auto argsArray = visitTrailer(ctx->trailer()).as<std::vector<antlrcpp::Any>>();
-    if (argsArray.size() != 1) {
-        throw Exception(functionName, INVALID_FUNC_CALL);
-    }
+    // TODO
     if (functionName == "print") {
         std::cout << argsArray[0] << '\n';
         return 0;
+    }
+    QueryResult func_query = func_table.VarQuery(functionName);
+    if (func_query.exist) {
+        printf("\n");
+        OutputFunction(functionName.c_str());
+        Function func_now = func_query.data;
+        for (int i = 0; i < func_now.para_array.size(); i++)
+            var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second);
+        // TODO
+        for (int i = 0; i < argsArray.size(); i++) {
+            var_table.VarRegister(func_now.para_array[i].first, argsArray[i]);
+        }
+        antlrcpp::Any tmp = visitSuite(func_now.suite_array);
+        printf("\n");
+        return std::move(tmp);
     }
     throw Exception("", UNIMPLEMENTED);
 }
@@ -239,7 +323,7 @@ antlrcpp::Any EvalVisitor::visitAtom(Python3Parser::AtomContext *ctx) {
     if (ctx->NUMBER()) {
         return TypeConverter::stringToNum(ctx->NUMBER()->getText());
     } else if (ctx->NAME()) {
-        auto result = scope.VarQuery(ctx->NAME()->getText());
+        auto result = var_table.VarQuery(ctx->NAME()->getText());
         if (result.exist) {
             return result.data;
         } else

@@ -108,13 +108,19 @@ antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
 }
 antlrcpp::Any operator/(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
     if (left_value.is<int>() && right_value.is<int>())
-        return std::move(left_value.as<int>() / right_value.as<int>());
+        return std::move((double)left_value.as<int>() / (double)right_value.as<int>());
     else
         throw Exception("", UNIMPLEMENTED);
 }
 antlrcpp::Any operator%(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
     if (left_value.is<int>() && right_value.is<int>())
         return std::move(left_value.as<int>() % right_value.as<int>());
+    else
+        throw Exception("", UNIMPLEMENTED);
+}
+antlrcpp::Any divide(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
+    if (left_value.is<int>() && right_value.is<int>())
+        return left_value.as<int>() && right_value.as<int>();
     else
         throw Exception("", UNIMPLEMENTED);
 }

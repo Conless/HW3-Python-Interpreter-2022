@@ -6,8 +6,6 @@
 #include "pyinter/scope.h"
 #include "pyinter/utils.h"
 
-static Scope scope;
-
 class EvalVisitor : public Python3BaseVisitor {
 
     // todo:override all methods of Python3BaseVisitor

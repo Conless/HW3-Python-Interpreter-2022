@@ -7,19 +7,24 @@
 
 #include "Python3BaseVisitor.h"
 
+struct Function {
+    std::vector<std::pair<std::string, antlrcpp::Any>> para_array;
+    Python3Parser::SuiteContext *suite_array;
+};
+
 struct QueryResult {
     bool exist;
     antlrcpp::Any data;
 
-    QueryResult(bool exist, antlrcpp::Any data) : exist(exist), data(data) { }
+    QueryResult(bool exist, antlrcpp::Any data) : exist(exist), data(data) {}
 };
 
 class Scope {
   private:
-    std::unordered_map<std::string, antlrcpp::Any> var_table;
+    std::unordered_map<std::string, antlrcpp::Any> data_table;
 
   public:
-    Scope() { var_table.clear(); }
+    Scope() { data_table.clear(); }
     void VarRegister(const std::string &var_name, antlrcpp::Any var_data);
     QueryResult VarQuery(const std::string &var_name) const;
 };
