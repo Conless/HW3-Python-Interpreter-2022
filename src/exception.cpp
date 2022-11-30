@@ -1,4 +1,4 @@
-#include "pyinter/Exception.h"
+#include "pyinter/exception.h"
 
 Exception::Exception(const std::string &arg, ExceptionType type) {
     if (type == UNIMPLEMENTED)
