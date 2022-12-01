@@ -1,4 +1,5 @@
 # IDE files
+.cache/
 .idea/
 cmake-build-debug/
 build/

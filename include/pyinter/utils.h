@@ -20,6 +20,7 @@ antlrcpp::Any stringToNum(const std::string &str);
 double ToDouble(const antlrcpp::Any &num);
 
 bool ToBool(const std::string &str);
+bool toBool(const antlrcpp::Any &x);
 
 bool validateVarName(const std::string &str);
 
