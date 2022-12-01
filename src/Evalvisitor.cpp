@@ -3,11 +3,11 @@
 #include "int2048/int2048.h"
 #include "pyinter/utils.h"
 
-int dfn = 0;
+int stk = 0;
 
 Scope var_table, func_table;
 
-typedef sjtu::int2048 ll;
+typedef long long ll;
 const ll kFlowContinue = 472318;
 const ll kFlowBreak = 5840;
 const ll kFlowReturn = 3;
@@ -87,6 +87,8 @@ antlrcpp::Any EvalVisitor::visitExpr_stmt(Python3Parser::Expr_stmtContext *ctx) 
             var_table.VarRegister(var_name, var.data / num);
         } else if (opt == "//=") {
             var_table.VarRegister(var_name, divide(var.data, num));
+        } else if (opt == "%=") {
+            var_table.VarRegister(var_name, var.data % num);
         }
         return var_table.VarQuery(var_name).data;
     } else {
@@ -335,14 +337,10 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
     if (func_query.exist) {
         // printf("\nCustom Function\n");
         // OutputFunction(functionName.c_str());
-        std::cout << functionName << " ";
+        ++stk;
+        std::cout << functionName << "(" << stk << ")" << " ";
         Function func_now = func_query.data;
-        Scope var_table_temp;
-        for (int i = 0; i < argsArray.size(); i++) {
-            QueryResult q = var_table.VarQuery(func_now.para_array[i].first);
-            if (q.exist)
-                var_table_temp.VarRegister(func_now.para_array[i].first, q.data);
-        }
+        var_table.push();
         for (int i = 0; i < func_now.para_array.size(); i++)
             var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second);
         // TODO
@@ -352,13 +350,11 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         }
         std::cout << "\n";
         antlrcpp::Any tmp = visitSuite(func_now.suite_array);
-        for (int i = 0; i < argsArray.size(); i++) {
-            QueryResult q = var_table_temp.VarQuery(func_now.para_array[i].first);
-            if (q.exist)
-                var_table.VarRegister(func_now.para_array[i].first, q.data);
-        }
-
-        // printf("End function %s\n\n", functionName.c_str());
+        var_table.pop();
+        if (functionName == "pollard_rho" && stk == 1)
+            stk = 1;
+        printf("End function %s(%d)\n", functionName.c_str(), stk);
+        stk--;
         if (tmp.is<std::pair<ll, antlrcpp::Any>>())
             return tmp.as<std::pair<ll, antlrcpp::Any>>().second;
         return tmp;

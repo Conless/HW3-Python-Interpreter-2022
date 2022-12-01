@@ -403,4 +403,10 @@ int2048 &int2048::operator/=(int2048 num_right) {
 }
 int2048 operator/(int2048 num_left, const int2048 &num_right) { return num_left /= num_right; }
 
+int2048 &int2048::operator%=(int2048 num_right) {
+    int2048 div_res = *this / num_right;
+    return *this -= div_res * num_right;
+}
+int2048 operator%(int2048 num_left, const int2048 &num_right) { return num_left %= num_right; }
+
 } // namespace sjtu

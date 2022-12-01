@@ -4,7 +4,7 @@
 
 int show_status;
 
-typedef sjtu::int2048 ll;
+typedef long long ll;
 
 void JudgeInput(int argc, char *argv[]) {
     if (argc >= 2) {

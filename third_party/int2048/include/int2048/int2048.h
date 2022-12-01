@@ -149,6 +149,8 @@ class int2048 {
   public:
     int2048 &operator/=(int2048);
     friend int2048 operator/(int2048, const int2048 &);
+    int2048 &operator%=(int2048);
+    friend int2048 operator%(int2048, const int2048 &);
 };
 
 } // namespace sjtu

@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <string>
+#include <stack>
 #include <unordered_map>
 
 #include "Python3BaseVisitor.h"
@@ -21,12 +22,14 @@ struct QueryResult {
 
 class Scope {
   private:
-    std::unordered_map<std::string, antlrcpp::Any> data_table;
+    std::vector<std::unordered_map<std::string, antlrcpp::Any>> data_table;
 
   public:
-    Scope() { data_table.clear(); }
+    Scope();
     void VarRegister(const std::string &var_name, antlrcpp::Any var_data);
     QueryResult VarQuery(const std::string &var_name) const;
+    void push();
+    void pop();
 };
 
 #endif // APPLE_PIE_SCOPE_H
