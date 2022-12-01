@@ -1,9 +1,10 @@
 #include "pyinter/utils.h"
 #include "pyinter/exception.h"
+#include "int2048/int2048.h"
 
 int show_status;
 
-typedef long long ll;
+typedef sjtu::int2048 ll;
 
 void JudgeInput(int argc, char *argv[]) {
     if (argc >= 2) {
@@ -47,14 +48,7 @@ antlrcpp::Any stringToNum(const std::string &str) {
         }
     }
     antlrcpp::Any ret;
-    if (flag)
-        ret = (double)ret1 + ((double)ret2 / (double)div);
-    else
-        ret = ret1;
-    if (ret.is<ll>())
-        std::cout << 1;
-    if (ret.is<double>())
-        std::cout << 2;
+    ret = ret1;
     return ret;
 }
 
@@ -76,11 +70,11 @@ bool toBool(const antlrcpp::Any &x) {
     throw Exception("", UNIMPLEMENTED);
 }
 
-double ToDouble(const antlrcpp::Any &num) {
-    if (num.is<ll>())
-        return static_cast<double>(num.as<ll>());
-    return num.as<double>();
-}
+// double ToDouble(const antlrcpp::Any &num) {
+//     if (num.is<ll>())
+//         return static_cast<double>(num.as<ll>());
+//     return num.as<double>();
+// }
 
 } // namespace TypeConverter
 
@@ -96,8 +90,9 @@ bool validateVarName(const std::string &str) {
 antlrcpp::Any operator+(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
     if (left_value.is<std::string>() && right_value.is<std::string>())
         return std::move(left_value.as<std::string>() + right_value.as<std::string>());
-    if (left_value.is<double>() || right_value.is<double>())
-        return std::move(TypeConverter::ToDouble(left_value) + TypeConverter::ToDouble(right_value));
+    // TODO
+    // if (left_value.is<double>() || right_value.is<double>())
+    //     return std::move(TypeConverter::ToDouble(left_value) + TypeConverter::ToDouble(right_value));
     if (left_value.is<ll>() && right_value.is<ll>())
         return std::move(left_value.as<ll>() + right_value.as<ll>());
     if (left_value.is<std::string>() && right_value.is<ll>())
@@ -115,7 +110,7 @@ antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
     if (left_value.is<std::string>() && right_value.is<ll>()) {
         ll rpt_time = right_value.as<ll>();
         std::string rpt_data = left_value.as<std::string>(), rpt_res = "";
-        while (rpt_time--)
+        while (rpt_time-- != 0)
             rpt_res += rpt_data;
         return std::move(rpt_res);
     }
@@ -125,8 +120,9 @@ antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
         throw Exception("", UNIMPLEMENTED);
 }
 antlrcpp::Any operator/(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
+    // TODO
     if (left_value.is<ll>() && right_value.is<ll>())
-        return std::move((double)left_value.as<ll>() / (double)right_value.as<ll>());
+        return std::move(left_value.as<ll>() / right_value.as<ll>());
     else
         throw Exception("", UNIMPLEMENTED);
 }

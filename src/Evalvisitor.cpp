@@ -1,12 +1,13 @@
 #include "pyinter/Evalvisitor.h"
 
+#include "int2048/int2048.h"
 #include "pyinter/utils.h"
 
 int dfn = 0;
 
 Scope var_table, func_table;
 
-typedef long long ll;
+typedef sjtu::int2048 ll;
 const ll kFlowContinue = 472318;
 const ll kFlowBreak = 5840;
 const ll kFlowReturn = 3;
@@ -304,7 +305,7 @@ antlrcpp::Any EvalVisitor::visitFactor(Python3Parser::FactorContext *ctx) {
     // TODO
     if (ctx->MINUS()) {
         if (ret.is<ll>())
-            ret = -ret.as<ll>();
+            ret = 0 - ret.as<ll>();
     }
     return ret;
 }
@@ -332,8 +333,9 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
     }
     QueryResult func_query = func_table.VarQuery(functionName);
     if (func_query.exist) {
-        printf("\nCustom Function\n");
-        OutputFunction(functionName.c_str());
+        // printf("\nCustom Function\n");
+        // OutputFunction(functionName.c_str());
+        std::cout << functionName << " ";
         Function func_now = func_query.data;
         Scope var_table_temp;
         for (int i = 0; i < argsArray.size(); i++) {
@@ -341,14 +343,14 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
             if (q.exist)
                 var_table_temp.VarRegister(func_now.para_array[i].first, q.data);
         }
-            for (int i = 0; i < func_now.para_array.size(); i++)
-                var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second);
+        for (int i = 0; i < func_now.para_array.size(); i++)
+            var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second);
         // TODO
         for (int i = 0; i < argsArray.size(); i++) {
             var_table.VarRegister(func_now.para_array[i].first, argsArray[i]);
-            printf("%lld ", argsArray[i].as<ll>());
+            std::cout << argsArray[i].as<ll>() << " ";
         }
-        printf("\n");
+        std::cout << "\n";
         antlrcpp::Any tmp = visitSuite(func_now.suite_array);
         for (int i = 0; i < argsArray.size(); i++) {
             QueryResult q = var_table_temp.VarQuery(func_now.para_array[i].first);
@@ -356,7 +358,7 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
                 var_table.VarRegister(func_now.para_array[i].first, q.data);
         }
 
-        printf("End function %s\n\n", functionName.c_str());
+        // printf("End function %s\n\n", functionName.c_str());
         if (tmp.is<std::pair<ll, antlrcpp::Any>>())
             return tmp.as<std::pair<ll, antlrcpp::Any>>().second;
         return tmp;

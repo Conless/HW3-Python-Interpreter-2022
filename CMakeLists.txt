@@ -47,11 +47,11 @@ set(pyinter_src_dir
 
 # add_executable(code ${src_dir} ${pyinter_src_dir})
 
-# target_link_libraries(code antlr4-cpp-runtime)
+# target_link_libraries(code antlr4-cpp-runtime int2048-runtime)
 
 add_executable(pyinter ${src_dir} ${pyinter_src_dir})
 
-target_link_libraries(pyinter antlr4-cpp-runtime)
+target_link_libraries(pyinter antlr4-cpp-runtime int2048-runtime)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
