@@ -1,0 +1,9 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW3-Python-Interpreter-2022/build
+Consolidate compiler generated dependencies of target int2048-runtime
+[  1%] Built target int2048-runtime
+Consolidate compiler generated dependencies of target antlr4-cpp-runtime
+[ 93%] Built target antlr4-cpp-runtime
+Consolidate compiler generated dependencies of target pyinter
+[100%] Built target pyinter

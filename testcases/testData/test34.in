@@ -1,0 +1,15 @@
+#Function as Argument
+def toString(num):
+    return str(num)
+
+def merge(str1, str2):
+    return str1 + str2
+
+def superMerge(str1, str2):
+    return merge(merge(merge(str1, str2), str1), str2)
+
+a = 23
+b = 33
+a = superMerge(toString(a), toString(b))
+
+print(int(a) + float(b))

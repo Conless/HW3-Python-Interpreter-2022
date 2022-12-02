@@ -1,0 +1,25 @@
+#High Precision Computation
+def fac(x):
+    if x == 0:
+        return 1
+    return x * fac(x - 1)
+
+ans = 0
+c1 = fac(30)
+c2 = fac(29)
+c3 = fac(28)
+c4 = fac(27)
+i = 0
+while i <= 2000:
+    tmp = i % 4
+    if tmp == 0:
+        ans += c1
+    elif tmp == 1:
+        ans -= c2
+    elif tmp == 2:
+        ans *= c3
+    else:
+        ans //= c4
+    i += 1
+
+print(ans)

@@ -1,0 +1,9 @@
+#Assignment Test
+a_1 = 3.14
+a_2 = "PI"
+tmp = None
+tmp = a_1
+a_1 = a_2
+a_2 = tmp
+print(a_1)
+print(a_2)

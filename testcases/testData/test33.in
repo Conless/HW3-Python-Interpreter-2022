@@ -1,0 +1,12 @@
+#Calling Functions
+def odd(x, delta = 1):
+    return even(x - 1, 5) + delta
+
+def even(x, delta = 2):
+    if x:
+        return odd(x - 1) + delta
+    else:
+        return 0
+
+print(even(100))
+print(odd(99))

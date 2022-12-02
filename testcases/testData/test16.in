@@ -1,0 +1,5 @@
+#Boolean Operation with Type Conversion
+cmp_1 = bool(100)
+cmp_2 = cmp_1 and not (2 < 2)
+print(cmp_2)
+print(cmp_1 + cmp_2 * 3)

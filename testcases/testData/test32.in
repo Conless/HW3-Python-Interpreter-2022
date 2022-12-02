@@ -1,0 +1,7 @@
+#Default Argument Test
+def foo(a = 1, b = 2):
+    return a * b * b
+
+print(foo())
+print(foo(3))
+print(foo(3, 5))

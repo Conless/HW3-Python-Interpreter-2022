@@ -1,0 +1,5 @@
+#Float Arithmetic
+print(2.75 + 3.1 + 6.0)
+print(3.0 + 2.0 - 6)
+print(int(5.3 * 6 - 5.2))
+print(int(333.8 / 6 / 2))

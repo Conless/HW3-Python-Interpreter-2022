@@ -1,0 +1,12 @@
+#Continue Test
+n = 10
+i = 0
+ans = 1
+while True:
+    i += 1
+    if i == (i // 2) * 2:
+        continue
+    ans *= i
+    if i > n:
+        break
+print(ans)

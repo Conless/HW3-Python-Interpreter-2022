@@ -1,0 +1,16 @@
+#Local Variable Test
+bool1 = True or False
+bool2 = True and False
+var = 1
+if not not True:
+    var = 0
+    if bool1 or bool2:
+        two = (1 + 1 - 1) * 2
+        three = two + 1
+        var += two + three
+    else:
+        two = (1 + 1 - 1) * 2
+        three = two + 1
+        var -= two + three
+    print(var)
+print(var)

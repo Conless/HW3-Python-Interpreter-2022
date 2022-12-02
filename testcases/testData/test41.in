@@ -1,0 +1,19 @@
+#Getting Maximum Value
+def max(x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0):
+    ans = 0
+    if x1 > ans:
+        ans = x1
+    if x2 > ans:
+        ans = x2
+    if x3 > ans:
+        ans = x3
+    if x4 > ans:
+        ans = x4
+    if x5 > ans:
+        ans = x5
+    return ans
+
+print(max(100, 10000))
+print(max(3, 2, 1))
+print(max(123456789098765432112345678909876543211234567890987654321))
+print(max())

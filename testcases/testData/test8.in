@@ -1,0 +1,6 @@
+#Arithmetic Test
+print(10 + 11)
+print(2 - 1)
+print(3*7)
+print(10 // 3)
+print(10 / 2.5)

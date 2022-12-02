@@ -1,0 +1,17 @@
+#Calculate Leap Years
+def leapYear(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    return False
+
+now = 1926
+while now <= 2019:
+    if leapYear(now):
+        print(now)
+    now += 1

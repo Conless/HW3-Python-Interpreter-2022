@@ -1,0 +1,16 @@
+#Nesting of While Statement
+cnt = 0
+i = 0
+while i < 10:
+    j = 0
+    while j < i:
+        k = 0
+        while k < j:
+            l = 0
+            while l < k:
+                cnt += 1
+                l += 1
+            k += 1
+        j += 1
+    i += 1
+print(cnt)

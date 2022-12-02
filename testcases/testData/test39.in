@@ -1,0 +1,11 @@
+#Short Circuit!
+def print1():
+    print("1")
+    return True
+
+def print2():
+    print("2")
+    return False
+
+print(print1() or print2())
+print(print2() and print1())

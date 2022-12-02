@@ -15,6 +15,8 @@ int stringToInt(const std::string &str);
 
 namespace TypeConverter {
 
+std::string toString(antlrcpp::Any &num);
+
 antlrcpp::Any stringToNum(const std::string &str);
 
 // double ToDouble(const antlrcpp::Any &num);

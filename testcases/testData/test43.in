@@ -1,0 +1,29 @@
+#Reverse the Numbers
+def rev1(x):
+    y = 0
+    while x != 0:
+        y = 10 * y + x % 10
+        x //= 10
+    return str(y)
+
+def rev2(x):
+    y = ""
+    flag = False
+    while x != 0:
+        rem = x % 10
+        if flag or rem:
+            y += str(x % 10)
+        if rem:
+            flag = True
+        x //= 10
+    return y
+
+print(rev1(101))
+print(rev2(1010))
+
+now = 1
+ans = True
+while now <= 100:
+    ans = ans and (rev1(now) == rev2(now))
+    now += 1
+print(ans)

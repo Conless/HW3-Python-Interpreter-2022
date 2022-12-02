@@ -1,0 +1,10 @@
+#Break Test
+n = 10
+i = 0
+ans = 1
+while True:
+    i += 1
+    ans *= i
+    if i > n:
+        break
+print(ans)

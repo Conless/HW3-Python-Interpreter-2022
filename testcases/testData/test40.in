@@ -1,0 +1,15 @@
+# a / b + c / d
+def calc(a, b, c, d):
+    x = a * d + b * c
+    y = b * d
+    p = x
+    q = y
+    while p != 0:
+        p, q = q - q // p * p, p
+    x = x // q
+    y = y // q
+    print(x)
+    print(y)
+
+calc(1, 2, 3, 4)
+calc(1, 2, 1, 2)

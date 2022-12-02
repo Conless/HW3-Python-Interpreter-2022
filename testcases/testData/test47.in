@@ -1,0 +1,17 @@
+#Fast Power
+def pow(m, n, mod):
+    ans = 1
+    while n:
+        if n % 2:
+            ans = ans * m % mod
+        m = m * m % mod
+        n //= 2
+    return ans
+
+def inv(n, p): #the inverse element of n modulo p when p is prime
+    return pow(n, p - 2, p)
+
+p = 998244353
+print(inv(233333, p))
+print(inv(123456, p))
+print(inv(p - 1, p))

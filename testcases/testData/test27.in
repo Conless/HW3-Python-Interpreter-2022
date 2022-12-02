@@ -1,0 +1,14 @@
+#Function Test
+def foo(a):
+    print(a)
+
+def foo_1(a):
+    print(a + 1)
+
+i = 0
+while i < 10:
+    if i > 5:
+        foo_1(i)
+    else:
+        foo(i)
+    i = i + 1

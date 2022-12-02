@@ -1,0 +1,5 @@
+#Boolean Operation Test
+cmp_1 = (3 + 5 * 2) < 7 * 6
+cmp_2 = cmp_1 and not (2 <= 2)
+print(cmp_1 or cmp_2)
+print(cmp_1 and cmp_2)

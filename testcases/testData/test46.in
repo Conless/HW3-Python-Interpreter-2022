@@ -1,0 +1,16 @@
+#Calculate Larger Fibonacci Sequence
+def fib(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    a_0 = 0
+    a_1 = 1
+    now = 1
+    while now < n:
+        a_0, a_1 = a_1, a_0 + a_1
+        now += 1
+    return a_1
+
+print(fib(0))
+print(fib(10000))

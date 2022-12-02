@@ -1,0 +1,21 @@
+#Enumerate Prime Numbers
+def judge(x):
+    i = 2
+    while True:
+        if i * i > x:
+            return True
+        if x % i == 0:
+            return False
+        i = i + 1
+
+def enum(m = 0):
+    x = 2
+    while x <= m:
+        if judge(x):
+            print(x)
+        x += 1
+    return "Wow!"
+
+enum()
+enum(10)
+enum(100)
