@@ -1,10 +1,9 @@
 #include "pyinter/utils.h"
 #include "pyinter/exception.h"
-#include "int2048/int2048.h"
 
 int show_status;
 
-typedef long long ll;
+typedef sjtu::int2048 ll;
 
 void JudgeInput(int argc, char *argv[]) {
     if (argc >= 2) {
@@ -110,7 +109,7 @@ antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
     if (left_value.is<std::string>() && right_value.is<ll>()) {
         ll rpt_time = right_value.as<ll>();
         std::string rpt_data = left_value.as<std::string>(), rpt_res = "";
-        while (rpt_time-- != 0)
+        for (ll i = 1; i <= rpt_time; i += 1)
             rpt_res += rpt_data;
         return std::move(rpt_res);
     }

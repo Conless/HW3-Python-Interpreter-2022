@@ -30,10 +30,10 @@ add_library (antlr4-cpp-runtime ${antlr4-cpp-src})
 
 include_directories(
         ${PROJECT_SOURCE_DIR}/include
-        ${PROJECT_SOURCE_DIR}/third_party/int2048/include   
+        ${PROJECT_SOURCE_DIR}/third_party/int2048_by_DarkSharpness/include   
 )
 file(GLOB int2048-src
-        ${PROJECT_SOURCE_DIR}/third_party/int2048/src/*.cpp
+        ${PROJECT_SOURCE_DIR}/third_party/int2048_by_DarkSharpness/src/int2048.cpp
 )
 add_library(int2048-runtime ${int2048-src})
 

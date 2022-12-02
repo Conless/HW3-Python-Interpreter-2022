@@ -45,9 +45,7 @@ seed = 19260817
 
 def rand() :
     seed += seed * 131072
-    seed %= 4294967296
     seed += seed // 32
-    seed %= 4294967296
     seed += seed * 4096
     seed %= 4294967296
     return seed
@@ -78,7 +76,7 @@ def pollard_rho(n) :
             q = F(F(q , n , c) , n , c)
 # print(rand())
 pollard_rho(998244352)
-# print()
-# pollard_rho(809172)
-# print()
+print()
+pollard_rho(809172)
+print()
 # pollard_rho(151299083768042202434037960)

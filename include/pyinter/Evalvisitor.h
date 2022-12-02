@@ -1,7 +1,7 @@
 #ifndef PYTHON_INTERPRETER_EVALVISITOR_H
 #define PYTHON_INTERPRETER_EVALVISITOR_H
 
-#include "pyinter/Exception.h"
+#include "pyinter/exception.h"
 
 #include "pyinter/scope.h"
 #include "pyinter/utils.h"

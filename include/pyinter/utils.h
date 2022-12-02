@@ -4,8 +4,8 @@
 #include <string>
 
 #include "Python3BaseVisitor.h"
-#include "int2048/int2048.h"
 #include "pyinter/exception.h"
+#include "int2048/int2048.h"
 
 void JudgeInput(int argc, char *argv[]);
 
