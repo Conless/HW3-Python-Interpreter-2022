@@ -149,6 +149,13 @@ antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
             rpt_res += rpt_data;
         return std::move(rpt_res);
     }
+    if (right_value.is<std::string>() && left_value.is<ll>()) {
+        ll rpt_time = left_value.as<ll>();
+        std::string rpt_data = right_value.as<std::string>(), rpt_res = "";
+        for (ll i = 1; i <= rpt_time; i += 1)
+            rpt_res += rpt_data;
+        return std::move(rpt_res);
+    }
     if (left_value.is<ll>() && right_value.is<ll>())
         return std::move(left_value.as<ll>() * right_value.as<ll>());
 

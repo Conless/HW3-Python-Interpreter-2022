@@ -51,7 +51,7 @@ do
     startTime=`date +"%s.%N"`
     ./bin/pyinter < $FILENAME.in > test.out
     endTime=`date +"%s.%N"` 
-    DIFF=$(diff test.out $FILENAME.out)
+    DIFF=$(diff -b test.out $FILENAME.out)
     if ["$DIFF" == ""]
     then
         echo "Answer correct on testdata custom testdata/"$var"."

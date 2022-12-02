@@ -11,6 +11,7 @@ typedef sjtu::int2048 ll;
 const ll kFlowContinue = 85234095823904;
 const ll kFlowBreak = 584085390455439;
 const ll kFlowReturn = 35890234859034;
+const ll kAssign = 473829542389;
 
 antlrcpp::Any EvalVisitor::visitFile_input(Python3Parser::File_inputContext *ctx) { return visitChildren(ctx); }
 
@@ -343,12 +344,11 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
     auto argsArray = visitTrailer(ctx->trailer()).as<std::vector<antlrcpp::Any>>();
     // TODO
     if (functionName == "print") {
-        if (argsArray.size())
-            std::cout << argsArray[0];
+        for (auto ctx_now : argsArray)
+            std::cout << ctx_now << ' ';
         std::cout << '\n';
         return 0;
-    }
-    else if (functionName == "int") {
+    } else if (functionName == "int") {
         if (argsArray[0].is<double>())
             return (ll)((int)argsArray[0].as<double>());
         if (argsArray[0].is<ll>())
@@ -418,11 +418,12 @@ antlrcpp::Any EvalVisitor::visitAtom(Python3Parser::AtomContext *ctx) {
         //     std::cout << 1;
         return ret;
     } else if (ctx->NAME()) {
-        auto result = var_table.VarQuery(ctx->NAME()->getText());
+        std::string var_name = ctx->NAME()->getText();
+        auto result = var_table.VarQuery(var_name);
         if (result.exist) {
             return result.data;
         } else
-            throw Exception(ctx->NAME()->getText(), UNDEFINED);
+            throw Exception("", UNIMPLEMENTED);
     } else if (ctx->TRUE()) {
         return true;
     } else if (ctx->FALSE()) {
@@ -454,12 +455,18 @@ antlrcpp::Any EvalVisitor::visitTestlist(Python3Parser::TestlistContext *ctx) {
 antlrcpp::Any EvalVisitor::visitArglist(Python3Parser::ArglistContext *ctx) {
     auto argumentArray = ctx->argument();
     std::vector<antlrcpp::Any> retArray;
-    for (auto ctx : argumentArray) {
-        if (ctx->test().size() > 1)
-            throw Exception("", UNIMPLEMENTED);
-        retArray.push_back(visitTest(ctx->test()[0]));
+    for (int i = 0; i < argumentArray.size(); ++i) {
+        antlrcpp::Any ret = visitArgument(argumentArray[i]);
+        retArray.push_back(ret);
     }
     return retArray;
 }
 
-antlrcpp::Any EvalVisitor::visitArgument(Python3Parser::ArgumentContext *ctx) { return visitChildren(ctx); }
+antlrcpp::Any EvalVisitor::visitArgument(Python3Parser::ArgumentContext *ctx) {
+    auto testArray = ctx->test();
+    if (!ctx->ASSIGN()) {
+        return visitTest(testArray[0]);
+    }
+    auto ret = visitTest(testArray[1]);
+    return ret;
+}
