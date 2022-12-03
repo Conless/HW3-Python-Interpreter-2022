@@ -380,8 +380,8 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         // printf("\nCustom Function\n");
         // OutputFunction(functionName.c_str());
         ++stk;
-        // std::cout << functionName << "(" << stk << ")"
-                //   << " ";
+        std::cout << functionName << "(" << stk << ")"
+                  << " ";
         Function func_now = func_query.data;
         var_table.push();
         for (int i = 0; i < func_now.para_array.size(); i++)
@@ -389,12 +389,12 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         // TODO
         for (int i = 0; i < argsArray.size(); i++) {
             var_table.VarRegister(func_now.para_array[i].first, argsArray[i]);
-            // std::cout << argsArray[i] << " ";
+            std::cout << argsArray[i] << " ";
         }
-        // std::cout << "\n";
+        std::cout << "\n";
         antlrcpp::Any tmp = visitSuite(func_now.suite_array);
         var_table.pop();
-        // printf("End function %s(%d)\n", functionName.c_str(), stk);
+        printf("End function %s(%d)\n", functionName.c_str(), stk);
         stk--;
         if (tmp.is<std::pair<ll, antlrcpp::Any>>())
             return tmp.as<std::pair<ll, antlrcpp::Any>>().second;
