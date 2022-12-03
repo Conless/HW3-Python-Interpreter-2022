@@ -157,7 +157,7 @@ antlrcpp::Any operator*(const antlrcpp::Any &left_value, const antlrcpp::Any &ri
 antlrcpp::Any operator/(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
     // TODO
     if (left_value.is<ll>() && right_value.is<ll>())
-        return std::move(left_value.as<ll>() / right_value.as<ll>());
+        return std::move(TypeConverter::ToDouble(left_value.as<ll>()) / TypeConverter::ToDouble(right_value.as<ll>()));
 
     if (left_value.is<double>() || right_value.is<double>())
         return TypeConverter::ToDouble(left_value) / TypeConverter::ToDouble(right_value);
