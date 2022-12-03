@@ -365,7 +365,9 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
     }
     auto functionName = ctx->atom()->getText();
     // std::cout << functionName << '\n';
+    stk++;
     auto argsArray = visitTrailer(ctx->trailer()).as<std::vector<antlrcpp::Any>>();
+    stk--;
     // TODO
     if (functionName == "print") {
         for (auto ctx_now : argsArray)
@@ -393,7 +395,7 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         var_table.push();
         for (int i = 0; i < func_now.para_array.size(); i++)
             var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second, 1);
-
+        stk++;
         if (scope_func.find(stk) == scope_func.end()) {
             for (int i = 0; i < argsArray.size(); i++)
                 var_table.VarRegister(func_now.para_array[i].first, argsArray[i], 1);
@@ -410,10 +412,8 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
                 std::cout << var_table.VarQuery(func_now.para_array[i].first).data << ' ';
             std::cout << "\n";
         }
-        ++stk;
         antlrcpp::Any tmp = visitSuite(func_now.suite_array);
         stk--;
-        scope_func.erase(stk);
         var_table.pop();
         if (tmp.is<std::pair<ll, antlrcpp::Any>>())
             tmp = tmp.as<std::pair<ll, antlrcpp::Any>>().second;
