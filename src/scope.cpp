@@ -6,8 +6,8 @@ Scope::Scope() {
     data_table.push_back(std::unordered_map<std::string, antlrcpp::Any>());
 }
 
-void Scope::VarRegister(const std::string &var_name, antlrcpp::Any var_data) {
-    if (data_table.back().find(var_name) != data_table.back().end()) {
+void Scope::VarRegister(const std::string &var_name, antlrcpp::Any var_data, int type) {
+    if (type || data_table.back().find(var_name) != data_table.back().end()) {
         data_table.back()[var_name] = var_data;
         return;
     }

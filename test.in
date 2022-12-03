@@ -1,10 +1,12 @@
-# pi
-pi = 0
-i = 0
-p_16 = 1
-while i < 5:
-	pi += 1/p_16*(4/(8*i+1)-2/(8*i+4)-1/(8*i+5)-1/(8*i+6))
-	p_16 *= 16
-	i += 1
+def f():
+    return 1
+def g(a = f(), b = 3):
+    return a, b
+def h(a = 3):
+    print(a)
+    if(a > 1):
+        h(a - 1)
+print(f())
+a, b = g(b = 0)
+print(a, b)
 
-print(pi)

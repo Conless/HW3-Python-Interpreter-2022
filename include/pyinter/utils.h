@@ -4,29 +4,18 @@
 #include <string>
 
 #include "Python3BaseVisitor.h"
-#include "pyinter/exception.h"
 #include "int2048/int2048.h"
+#include "pyinter/exception.h"
 
-void JudgeInput(int argc, char *argv[]);
-
-void OutputFunction(const char *s);
-
-int stringToInt(const std::string &str);
+typedef sjtu::int2048 ll;
 
 namespace TypeConverter {
-
-std::string toString(antlrcpp::Any &num);
-
 antlrcpp::Any stringToNum(const std::string &str);
-
-// double ToDouble(const antlrcpp::Any &num);
-
-bool ToBool(const std::string &str);
+ll toInt(const antlrcpp::Any &num);
+std::string toString(const antlrcpp::Any &num);
 bool toBool(const antlrcpp::Any &x);
-
-bool validateVarName(const std::string &str);
-
-}
+double toDouble(const antlrcpp::Any &num);
+} // namespace TypeConverter
 
 antlrcpp::Any operator+(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);
 antlrcpp::Any operator-(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value);

@@ -6,6 +6,9 @@
 #include "pyinter/scope.h"
 #include "pyinter/utils.h"
 
+void JudgeInput(int argc, char *argv[]);
+void OutputFunction(const char *s);
+
 class EvalVisitor : public Python3BaseVisitor {
 
     // todo:override all methods of Python3BaseVisitor

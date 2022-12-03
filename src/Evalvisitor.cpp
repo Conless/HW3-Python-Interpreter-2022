@@ -373,33 +373,13 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         std::cout << '\n';
         return 0;
     } else if (functionName == "int") {
-        if (argsArray[0].is<double>())
-            return (ll)((int)argsArray[0].as<double>());
-        if (argsArray[0].is<ll>())
-            return argsArray[0].as<ll>();
-        if (argsArray[0].is<std::string>())
-            return ll(argsArray[0].as<std::string>());
-        if (argsArray[0].is<bool>())
-            return ll(argsArray[0].as<bool>());
-        throw Exception("", UNIMPLEMENTED);
+        return TypeConverter::toInt(argsArray[0]);
     } else if (functionName == "float") {
-        if (argsArray[0].is<double>())
-            return argsArray[0].as<double>();
-        if (argsArray[0].is<ll>())
-            return double(argsArray[0].as<ll>());
-        if (argsArray[0].is<std::string>())
-            return TypeConverter::stringToNum(argsArray[0].as<std::string>());
-        throw Exception("", UNIMPLEMENTED);
+        return TypeConverter::toDouble(argsArray[0]);
     } else if (functionName == "str") {
         return TypeConverter::toString(argsArray[0]);
     } else if (functionName == "bool") {
-        if (argsArray[0].is<double>())
-            return argsArray[0].as<double>() != 0;
-        if (argsArray[0].is<ll>())
-            return argsArray[0].as<ll>() != 0;
-        if (argsArray[0].is<bool>())
-            return argsArray[0].as<bool>();
-        throw Exception("", UNIMPLEMENTED);
+        return TypeConverter::toBool(argsArray[0]);
     }
     QueryResult func_query = func_table.VarQuery(functionName);
     if (func_query.exist) {
@@ -412,15 +392,18 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         Function func_now = func_query.data;
         var_table.push();
         for (int i = 0; i < func_now.para_array.size(); i++)
-            var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second);
-        // TODO
-        for (int i = 0; i < argsArray.size(); i++)
-            var_table.VarRegister(func_now.para_array[i].first, argsArray[i]);
-        if (scope_func.find(stk) != scope_func.end()) {
+            var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second, 1);
+
+        if (scope_func.find(stk) == scope_func.end()) {
+            for (int i = 0; i < argsArray.size(); i++)
+                var_table.VarRegister(func_now.para_array[i].first, argsArray[i], 1);
+        } else {
             for (int i = 0; i < func_now.para_array.size(); i++) {
-                var_table.VarRegister(func_now.para_array[i].first,
-                                      scope_func[stk].VarQuery(func_now.para_array[i].first).data);
+                QueryResult qres = scope_func[stk].VarQuery(func_now.para_array[i].first);
+                if (qres.exist)
+                    var_table.VarRegister(func_now.para_array[i].first, qres.data, 1);
             }
+            scope_func.erase(stk);
         }
         if (show_status) {
             for (int i = 0; i < func_now.para_array.size(); i++)
@@ -519,6 +502,6 @@ antlrcpp::Any EvalVisitor::visitArgument(Python3Parser::ArgumentContext *ctx) {
                                    ->getText();
         auto var_data = visitTest(testArray[1]);
         scope_func[stk].VarRegister(var_name, var_data);
-        return var_data;
+        return std::make_pair(kAssign, var_data);
     }
 }

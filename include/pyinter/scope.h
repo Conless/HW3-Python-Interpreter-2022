@@ -26,7 +26,7 @@ class Scope {
 
   public:
     Scope();
-    void VarRegister(const std::string &var_name, antlrcpp::Any var_data);
+    void VarRegister(const std::string &var_name, antlrcpp::Any var_data, int type = 0);
     QueryResult VarQuery(const std::string &var_name) const;
     void push();
     void pop();
