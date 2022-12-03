@@ -4,6 +4,7 @@
 #include "pyinter/utils.h"
 
 int stk = 0;
+int show_status;
 
 Scope var_table, func_table;
 
@@ -12,6 +13,25 @@ const ll kFlowContinue = 85234095823904;
 const ll kFlowBreak = 584085390455439;
 const ll kFlowReturn = 35890234859034;
 const ll kAssign = 473829542389;
+
+std::unordered_map<int, Scope> scope_func;
+
+void JudgeInput(int argc, char *argv[]) {
+    if (argc >= 2) {
+        if (!strcmp(argv[1], "--show-status=0"))
+            show_status = 0;
+        else if (!strcmp(argv[1], "--show-status=1"))
+            show_status = 1;
+        else if (!strcmp(argv[1], "--show-status=2"))
+            show_status = 2;
+    }
+}
+
+void OutputFunction(const char *s) {
+    if (show_status == 2)
+        printf("Into function %s\n", s);
+    return;
+}
 
 antlrcpp::Any EvalVisitor::visitFile_input(Python3Parser::File_inputContext *ctx) { return visitChildren(ctx); }
 
@@ -379,23 +399,35 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
     if (func_query.exist) {
         // printf("\nCustom Function\n");
         // OutputFunction(functionName.c_str());
-        ++stk;
-        std::cout << functionName << "(" << stk << ")"
-                  << " ";
+        if (show_status) {
+            std::cout << functionName << "(" << stk << ")"
+                      << " ";
+        }
         Function func_now = func_query.data;
         var_table.push();
         for (int i = 0; i < func_now.para_array.size(); i++)
             var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second);
         // TODO
-        for (int i = 0; i < argsArray.size(); i++) {
+        for (int i = 0; i < argsArray.size(); i++)
             var_table.VarRegister(func_now.para_array[i].first, argsArray[i]);
-            std::cout << argsArray[i] << " ";
+        if (scope_func.find(stk) != scope_func.end()) {
+            for (int i = 0; i < func_now.para_array.size(); i++) {
+                var_table.VarRegister(func_now.para_array[i].first,
+                                      scope_func[stk].VarQuery(func_now.para_array[i].first).data);
+            }
         }
-        std::cout << "\n";
+        if (show_status) {
+            for (int i = 0; i < func_now.para_array.size(); i++)
+                std::cout << var_table.VarQuery(func_now.para_array[i].first).data << ' ';
+            std::cout << "\n";
+        }
+        ++stk;
         antlrcpp::Any tmp = visitSuite(func_now.suite_array);
-        var_table.pop();
-        printf("End function %s(%d)\n", functionName.c_str(), stk);
         stk--;
+        scope_func.erase(stk);
+        var_table.pop();
+        if (show_status)
+            printf("End function %s(%d)\n", functionName.c_str(), stk);
         if (tmp.is<std::pair<ll, antlrcpp::Any>>())
             return tmp.as<std::pair<ll, antlrcpp::Any>>().second;
         return tmp;
@@ -423,7 +455,7 @@ antlrcpp::Any EvalVisitor::visitAtom(Python3Parser::AtomContext *ctx) {
         if (result.exist) {
             return result.data;
         } else
-            throw Exception("", UNIMPLEMENTED);
+            return std::make_pair(kAssign, var_name);
     } else if (ctx->TRUE()) {
         return true;
     } else if (ctx->FALSE()) {
@@ -439,7 +471,6 @@ antlrcpp::Any EvalVisitor::visitAtom(Python3Parser::AtomContext *ctx) {
         str = str.substr(1, str.size() - 2);
         return std::move(str);
     }
-    throw Exception("", UNIMPLEMENTED);
 }
 
 antlrcpp::Any EvalVisitor::visitTestlist(Python3Parser::TestlistContext *ctx) {
@@ -467,6 +498,10 @@ antlrcpp::Any EvalVisitor::visitArgument(Python3Parser::ArgumentContext *ctx) {
     if (!ctx->ASSIGN()) {
         return visitTest(testArray[0]);
     }
-    auto ret = visitTest(testArray[1]);
+    auto ret = visitTest(testArray[0]);
+    if (ret.is<std::pair<ll, std::string>>()) {
+        auto num = visitTest(testArray[1]);
+        scope_func[stk].VarRegister(ret.as<std::pair<ll, std::string>>().second, num);
+    }
     return ret;
 }

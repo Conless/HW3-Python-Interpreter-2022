@@ -1,890 +1,178 @@
-f(1) 2 3 
 a =  2 b =  3 
-f(2) 1 3 
 a =  1 b =  3 
-f(3) 0 3 
 a =  0 b =  3 
-f(4) -1 3 
-End function f(4)
-f(4) 0 2 
 a =  0 b =  2 
-f(5) -1 2 
-End function f(5)
-f(5) 0 1 
 a =  0 b =  1 
-f(6) -1 1 
-End function f(6)
-f(6) 0 0 
-End function f(6)
-End function f(5)
-End function f(4)
-End function f(3)
-f(3) 1 2 
 a =  1 b =  2 
-f(4) 0 2 
 a =  0 b =  2 
-f(5) -1 2 
-End function f(5)
-f(5) 0 1 
 a =  0 b =  1 
-f(6) -1 1 
-End function f(6)
-f(6) 0 0 
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 1 1 
 a =  1 b =  1 
-f(5) 0 1 
 a =  0 b =  1 
-f(6) -1 1 
-End function f(6)
-f(6) 0 0 
-End function f(6)
-End function f(5)
-f(5) 1 0 
 a =  1 b =  0 
-f(6) 0 0 
-End function f(6)
-f(6) 1 -1 
-End function f(6)
-End function f(5)
-End function f(4)
-End function f(3)
-End function f(2)
-f(2) 2 2 
 a =  2 b =  2 
-f(3) 1 2 
 a =  1 b =  2 
-f(4) 0 2 
 a =  0 b =  2 
-f(5) -1 2 
-End function f(5)
-f(5) 0 1 
 a =  0 b =  1 
-f(6) -1 1 
-End function f(6)
-f(6) 0 0 
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 1 1 
 a =  1 b =  1 
-f(5) 0 1 
 a =  0 b =  1 
-f(6) -1 1 
-End function f(6)
-f(6) 0 0 
-End function f(6)
-End function f(5)
-f(5) 1 0 
 a =  1 b =  0 
-f(6) 0 0 
-End function f(6)
-f(6) 1 -1 
-End function f(6)
-End function f(5)
-End function f(4)
-End function f(3)
-f(3) 2 1 
 a =  2 b =  1 
-f(4) 1 1 
 a =  1 b =  1 
-f(5) 0 1 
 a =  0 b =  1 
-f(6) -1 1 
-End function f(6)
-f(6) 0 0 
-End function f(6)
-End function f(5)
-f(5) 1 0 
 a =  1 b =  0 
-f(6) 0 0 
-End function f(6)
-f(6) 1 -1 
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 2 0 
 a =  2 b =  0 
-f(5) 1 0 
 a =  1 b =  0 
-f(6) 0 0 
-End function f(6)
-f(6) 1 -1 
-End function f(6)
-End function f(5)
-f(5) 2 -1 
-End function f(5)
-End function f(4)
-End function f(3)
-End function f(2)
-End function f(1)
-f(1) 5 3 
-a =  5 b =  3 
-f(2) 4 3 
-a =  4 b =  3 
-f(3) 3 3 
+a =  3 b =  5 
+a =  2 b =  5 
+a =  1 b =  5 
+a =  0 b =  5 
+a =  0 b =  4 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  4 
+a =  0 b =  4 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  3 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  4 
+a =  1 b =  4 
+a =  0 b =  4 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  3 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  3 
+a =  1 b =  3 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  2 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  0 
+a =  1 b =  0 
+a =  3 b =  4 
+a =  2 b =  4 
+a =  1 b =  4 
+a =  0 b =  4 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  3 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  3 
+a =  1 b =  3 
+a =  0 b =  3 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  2 
+a =  1 b =  2 
+a =  0 b =  2 
+a =  0 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  1 
+a =  1 b =  1 
+a =  0 b =  1 
+a =  1 b =  0 
+a =  2 b =  0 
+a =  1 b =  0 
 a =  3 b =  3 
-f(4) 2 3 
 a =  2 b =  3 
-f(5) 1 3 
 a =  1 b =  3 
-f(6) 0 3 
 a =  0 b =  3 
-f(7) -1 3 
-End function f(7)
-f(7) 0 2 
 a =  0 b =  2 
-f(8) -1 2 
-End function f(8)
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 1 2 
 a =  1 b =  2 
-f(7) 0 2 
 a =  0 b =  2 
-f(8) -1 2 
-End function f(8)
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 1 1 
 a =  1 b =  1 
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 2 2 
 a =  2 b =  2 
-f(6) 1 2 
 a =  1 b =  2 
-f(7) 0 2 
 a =  0 b =  2 
-f(8) -1 2 
-End function f(8)
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 1 1 
 a =  1 b =  1 
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 2 1 
 a =  2 b =  1 
-f(7) 1 1 
 a =  1 b =  1 
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
 a =  2 b =  0 
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 3 2 
 a =  3 b =  2 
-f(5) 2 2 
 a =  2 b =  2 
-f(6) 1 2 
 a =  1 b =  2 
-f(7) 0 2 
 a =  0 b =  2 
-f(8) -1 2 
-End function f(8)
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 1 1 
 a =  1 b =  1 
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 2 1 
 a =  2 b =  1 
-f(7) 1 1 
 a =  1 b =  1 
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
 a =  2 b =  0 
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 3 1 
 a =  3 b =  1 
-f(6) 2 1 
 a =  2 b =  1 
-f(7) 1 1 
 a =  1 b =  1 
-f(8) 0 1 
 a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
 a =  2 b =  0 
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 3 0 
 a =  3 b =  0 
-f(7) 2 0 
 a =  2 b =  0 
-f(8) 1 0 
 a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-End function f(5)
-End function f(4)
-End function f(3)
-f(3) 4 2 
-a =  4 b =  2 
-f(4) 3 2 
-a =  3 b =  2 
-f(5) 2 2 
-a =  2 b =  2 
-f(6) 1 2 
-a =  1 b =  2 
-f(7) 0 2 
-a =  0 b =  2 
-f(8) -1 2 
-End function f(8)
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 3 1 
-a =  3 b =  1 
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 4 1 
-a =  4 b =  1 
-f(5) 3 1 
-a =  3 b =  1 
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 4 0 
-a =  4 b =  0 
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-f(6) 4 -1 
-End function f(6)
-End function f(5)
-End function f(4)
-End function f(3)
-End function f(2)
-f(2) 5 2 
-a =  5 b =  2 
-f(3) 4 2 
-a =  4 b =  2 
-f(4) 3 2 
-a =  3 b =  2 
-f(5) 2 2 
-a =  2 b =  2 
-f(6) 1 2 
-a =  1 b =  2 
-f(7) 0 2 
-a =  0 b =  2 
-f(8) -1 2 
-End function f(8)
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 3 1 
-a =  3 b =  1 
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 4 1 
-a =  4 b =  1 
-f(5) 3 1 
-a =  3 b =  1 
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 4 0 
-a =  4 b =  0 
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-f(6) 4 -1 
-End function f(6)
-End function f(5)
-End function f(4)
-End function f(3)
-f(3) 5 1 
-a =  5 b =  1 
-f(4) 4 1 
-a =  4 b =  1 
-f(5) 3 1 
-a =  3 b =  1 
-f(6) 2 1 
-a =  2 b =  1 
-f(7) 1 1 
-a =  1 b =  1 
-f(8) 0 1 
-a =  0 b =  1 
-f(9) -1 1 
-End function f(9)
-f(9) 0 0 
-End function f(9)
-End function f(8)
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-End function f(7)
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-End function f(6)
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-End function f(5)
-f(5) 4 0 
-a =  4 b =  0 
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-f(6) 4 -1 
-End function f(6)
-End function f(5)
-End function f(4)
-f(4) 5 0 
-a =  5 b =  0 
-f(5) 4 0 
-a =  4 b =  0 
-f(6) 3 0 
-a =  3 b =  0 
-f(7) 2 0 
-a =  2 b =  0 
-f(8) 1 0 
-a =  1 b =  0 
-f(9) 0 0 
-End function f(9)
-f(9) 1 -1 
-End function f(9)
-End function f(8)
-f(8) 2 -1 
-End function f(8)
-End function f(7)
-f(7) 3 -1 
-End function f(7)
-End function f(6)
-f(6) 4 -1 
-End function f(6)
-End function f(5)
-f(5) 5 -1 
-End function f(5)
-End function f(4)
-End function f(3)
-End function f(2)
-End function f(1)
 8 

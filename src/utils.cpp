@@ -1,24 +1,7 @@
 #include "pyinter/utils.h"
 #include "pyinter/exception.h"
 
-int show_status;
-
 typedef sjtu::int2048 ll;
-
-void JudgeInput(int argc, char *argv[]) {
-    if (argc >= 2) {
-        if (!strcmp(argv[1], "--show-status=0"))
-            show_status = 0;
-        else if (!strcmp(argv[1], "--show-status=1"))
-            show_status = 1;
-    }
-}
-
-void OutputFunction(const char *s) {
-    if (show_status)
-        printf("Into function %s\n", s);
-    return;
-}
 
 namespace TypeConverter {
 
