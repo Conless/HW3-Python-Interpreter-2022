@@ -45,7 +45,7 @@
 #     echo "Succeed on bigint-testcases"
 # fi
 flag=0
-for ((var = 1 ; $var <= 53; var++))
+for ((var = 46 ; $var <= 53; var++))
 do
     FILENAME='testcases/testData/test'$var
     startTime=`date +"%s.%N"`

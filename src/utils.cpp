@@ -13,6 +13,8 @@ std::string toString(antlrcpp::Any &num) {
         sprintf(s, "%.6lf", num.as<double>());
         return std::string(s);
     }
+    if (num.is<std::string>())
+        return num.as<std::string>();
     throw Exception("", UNIMPLEMENTED);
 }
 

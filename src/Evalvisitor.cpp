@@ -282,7 +282,8 @@ antlrcpp::Any EvalVisitor::visitComparison(Python3Parser::ComparisonContext *ctx
             res = las_num <= now_num;
         else if (opt == "!=")
             res = las_num != now_num;
-        else throw Exception("", UNIMPLEMENTED);
+        else
+            throw Exception("", UNIMPLEMENTED);
         if (!res)
             return false;
         las_num = now_num;
@@ -431,10 +432,12 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         stk--;
         scope_func.erase(stk);
         var_table.pop();
-        if (show_status)
-            printf("End function %s(%d)\n", functionName.c_str(), stk);
         if (tmp.is<std::pair<ll, antlrcpp::Any>>())
-            return tmp.as<std::pair<ll, antlrcpp::Any>>().second;
+            tmp = tmp.as<std::pair<ll, antlrcpp::Any>>().second;
+        if (show_status) {
+            printf("End function %s(%d) with return value ", functionName.c_str(), stk);
+            std::cout << tmp << '\n';
+        }
         return tmp;
     }
     throw Exception("", UNIMPLEMENTED);
@@ -502,11 +505,20 @@ antlrcpp::Any EvalVisitor::visitArgument(Python3Parser::ArgumentContext *ctx) {
     auto testArray = ctx->test();
     if (!ctx->ASSIGN()) {
         return visitTest(testArray[0]);
+    } else {
+        std::string var_name = testArray[0]
+                                   ->or_test()
+                                   ->and_test()[0]
+                                   ->not_test()[0]
+                                   ->comparison()
+                                   ->arith_expr()[0]
+                                   ->term()[0]
+                                   ->factor()[0]
+                                   ->atom_expr()
+                                   ->atom()
+                                   ->getText();
+        auto var_data = visitTest(testArray[1]);
+        scope_func[stk].VarRegister(var_name, var_data);
+        return var_data;
     }
-    auto ret = visitTest(testArray[0]);
-    if (ret.is<std::pair<ll, std::string>>()) {
-        auto num = visitTest(testArray[1]);
-        scope_func[stk].VarRegister(ret.as<std::pair<ll, std::string>>().second, num);
-    }
-    return ret;
 }
