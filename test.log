@@ -1,178 +1,94 @@
-a =  2 b =  3 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  2 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-a =  3 b =  5 
-a =  2 b =  5 
-a =  1 b =  5 
-a =  0 b =  5 
-a =  0 b =  4 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  4 
-a =  0 b =  4 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  4 
-a =  1 b =  4 
-a =  0 b =  4 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  3 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  2 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-a =  3 b =  4 
-a =  2 b =  4 
-a =  1 b =  4 
-a =  0 b =  4 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  3 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  2 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-a =  3 b =  3 
-a =  2 b =  3 
-a =  1 b =  3 
-a =  0 b =  3 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  2 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-a =  3 b =  2 
-a =  2 b =  2 
-a =  1 b =  2 
-a =  0 b =  2 
-a =  0 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-a =  3 b =  1 
-a =  2 b =  1 
-a =  1 b =  1 
-a =  0 b =  1 
-a =  1 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-a =  3 b =  0 
-a =  2 b =  0 
-a =  1 b =  0 
-8 
+Into function visitStmt
+Into function visitCompound_stmt
+Into function visitFuncdef
+Into function visitStmt
+Into function visitSimple_stmt
+Into function visitSmall_stmt
+Into function visitExpr_stmt
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitTrailer
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitAtom
+True 
+Into function visitStmt
+Into function visitSimple_stmt
+Into function visitSmall_stmt
+Into function visitExpr_stmt
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitTrailer
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitAtom
+foo(0) True 
+Into function visitSuite
+Into function visitStmt
+Into function visitSimple_stmt
+Into function visitSmall_stmt
+Into function visitExpr_stmt
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitTrailer
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitAtom
+True 
+Into function visitStmt
+Into function visitSimple_stmt
+Into function visitSmall_stmt
+Into function visitFlow_stmt
+Into function visitTest
+Into function visitOr_test
+Into function visitAnd_test
+Into function visitNot_test
+Into function visitComparison
+Into function visitArith_expr
+Into function visitTerm
+Into function visitFactor
+Into function visitAtom_expr
+Into function visitAtom
+End function foo(0)

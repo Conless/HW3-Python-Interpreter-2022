@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/bin/pyinter",
             //	每次执行命令行参数在argc中输入
             "args": [
-                "--show-status=0",
+                "--show-status=1",
                 "<test.in"
             ],
             "stopAtEntry": false,

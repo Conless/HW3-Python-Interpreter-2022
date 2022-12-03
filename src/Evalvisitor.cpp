@@ -263,26 +263,29 @@ antlrcpp::Any EvalVisitor::visitComparison(Python3Parser::ComparisonContext *ctx
     OutputFunction(__func__);
     auto term_array = ctx->arith_expr();
     auto opt_array = ctx->comp_op();
-    std::vector<antlrcpp::Any> num_array;
-    for (int i = 0; i < term_array.size(); i++)
-        num_array.push_back(visitArith_expr(term_array[i]));
-    if (num_array.size() == 1)
-        return num_array[0];
-    if (num_array.size() == 2) {
-        std::string opt = opt_array[0]->getText();
+    auto las_num = visitArith_expr(term_array[0]);
+    if (term_array.size() == 1)
+        return las_num;
+    for (int i = 1; i < term_array.size(); i++) {
+        auto now_num = visitArith_expr(term_array[i]);
+        std::string opt = opt_array[i - 1]->getText();
+        bool res;
         if (opt == "<")
-            return num_array[0] < num_array[1];
-        if (opt == ">")
-            return num_array[0] > num_array[1];
-        if (opt == "==")
-            return num_array[0] == num_array[1];
-        if (opt == ">=")
-            return num_array[0] >= num_array[1];
-        if (opt == "<=")
-            return num_array[0] <= num_array[1];
-        if (opt == "!=")
-            return num_array[0] != num_array[1];
-        throw Exception("", UNIMPLEMENTED);
+            res = las_num < now_num;
+        else if (opt == ">")
+            res = las_num > now_num;
+        else if (opt == "==")
+            res = las_num == now_num;
+        else if (opt == ">=")
+            res = las_num >= now_num;
+        else if (opt == "<=")
+            res = las_num <= now_num;
+        else if (opt == "!=")
+            res = las_num != now_num;
+        else throw Exception("", UNIMPLEMENTED);
+        if (!res)
+            return false;
+        las_num = now_num;
     }
     return true;
     // return visitChildren(ctx);
@@ -375,6 +378,8 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
             return argsArray[0].as<ll>();
         if (argsArray[0].is<std::string>())
             return ll(argsArray[0].as<std::string>());
+        if (argsArray[0].is<bool>())
+            return ll(argsArray[0].as<bool>());
         throw Exception("", UNIMPLEMENTED);
     } else if (functionName == "float") {
         if (argsArray[0].is<double>())
