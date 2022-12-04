@@ -373,7 +373,7 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         for (auto ctx_now : argsArray)
             std::cout << ctx_now << ' ';
         std::cout << '\n';
-        return 0;
+        return {};
     } else if (functionName == "int") {
         return TypeConverter::toInt(argsArray[0]);
     } else if (functionName == "float") {
