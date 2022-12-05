@@ -1,6 +1,11 @@
-def g(a, b, c):
-    return c, b, a
-def f(c, b, a):
-    return print(g(a, b, c))
+c=1
 
-print(f(1, 2, 3))
+def f():
+	c+=1
+	return c
+
+def g(a=f(),b=3):
+	return a,b
+
+print(g(b=0))
+print(g(b=0))

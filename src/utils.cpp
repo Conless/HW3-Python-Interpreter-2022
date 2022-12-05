@@ -190,7 +190,24 @@ antlrcpp::Any divide(const antlrcpp::Any &left_value, const antlrcpp::Any &right
         throw Exception("", UNIMPLEMENTED);
 }
 
-bool operator<(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
+bool operator<(const antlrcpp::Any &left_val, const antlrcpp::Any &right_val) {
+    antlrcpp::Any left_value = left_val, right_value = right_val;
+    if (left_value.isNull() && right_value.isNull())
+        return false;
+    if (left_value.isNull() || right_value.isNull()) {
+        if (right_value.isNull())
+            std::swap(left_value, right_value);
+        if (right_value.is<ll>())
+            left_value = ll(0);
+        else if (right_value.is<std::string>())
+            right_value = "";
+        else if (right_value.is<double>())
+            right_value = 0.0;
+        else if (right_value.is<bool>())
+            right_value = false;
+        else while (true)
+                ;
+    }
     if (left_value.is<std::string>() && right_value.is<std::string>())
         return left_value.as<std::string>() < right_value.as<std::string>();
     else if (left_value.is<std::string>() || right_value.is<std::string>())
@@ -206,11 +223,22 @@ bool operator<(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value
 
 bool operator>(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) { return right_value < left_value; }
 
-bool operator==(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
+bool operator==(const antlrcpp::Any &left_val, const antlrcpp::Any &right_val) {
+    antlrcpp::Any left_value = left_val, right_value = right_val;
     if (left_value.isNull() && right_value.isNull())
         return true;
-    else if (left_value.isNull() || right_value.isNull())
-        return false;
+    if (left_value.isNull() || right_value.isNull()) {
+        if (right_value.isNull())
+            std::swap(left_value, right_value);
+        if (right_value.is<ll>())
+            left_value = ll(0);
+        else if (right_value.is<std::string>())
+            right_value = "";
+        else if (right_value.is<double>())
+            right_value = 0.0;
+        else if (right_value.is<bool>())
+            right_value = false;
+    }
 
     if (left_value.is<std::string>() && right_value.is<std::string>())
         return left_value.as<std::string>() == right_value.as<std::string>();

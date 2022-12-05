@@ -9,10 +9,10 @@ int show_status;
 Scope var_table, func_table;
 
 typedef sjtu::int2048 ll;
-const ll kFlowContinue = 85234095823904;
-const ll kFlowBreak = 584085390455439;
-const ll kFlowReturn = 35890234859034;
-const ll kAssign = 473829542389;
+const ll kFlowContinue = 838001438920482394;
+const ll kFlowBreak = 532314390455439;
+const ll kFlowReturn = 358927564859034;
+const ll kAssign = 499993829542385089;
 
 std::unordered_map<int, Scope> scope_func;
 
