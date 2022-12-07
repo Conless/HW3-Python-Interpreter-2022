@@ -44,7 +44,8 @@ ll toInt(const antlrcpp::Any &num) {
         return ll(num.as<bool>());
     if (num.isNull())
         return 0;
-    throw Exception("", UNIMPLEMENTED);
+    while (true)
+        ;
 }
 std::string toString(const antlrcpp::Any &num) {
     if (num.is<ll>())
@@ -60,14 +61,16 @@ std::string toString(const antlrcpp::Any &num) {
         return num.as<bool>() ? "True" : "False";
     if (num.isNull())
         return "None";
-    throw Exception("", UNIMPLEMENTED);
+    while (true)
+        ;
 }
 bool toBool(const antlrcpp::Any &x) {
     if (x.is<std::string>()) {
         std::string str = x.as<std::string>();
         if (str != "")
             return true;
-        else return false;
+        else
+            return false;
     }
     if (x.is<double>())
         return x.as<double>() != 0.0;
@@ -77,7 +80,8 @@ bool toBool(const antlrcpp::Any &x) {
         return bool(x.as<ll>() != 0);
     if (x.isNull())
         return false;
-    throw Exception("", UNIMPLEMENTED);
+    while (true)
+        ;
 }
 double toDouble(const antlrcpp::Any &num) {
     if (num.is<ll>())
@@ -90,7 +94,8 @@ double toDouble(const antlrcpp::Any &num) {
         return num.as<bool>() ? 1.0 : 0.0;
     if (num.isNull())
         return 0;
-    throw Exception("", UNIMPLEMENTED);
+    while (true)
+        ;
 }
 } // namespace TypeConverter
 
@@ -190,24 +195,7 @@ antlrcpp::Any divide(const antlrcpp::Any &left_value, const antlrcpp::Any &right
         throw Exception("", UNIMPLEMENTED);
 }
 
-bool operator<(const antlrcpp::Any &left_val, const antlrcpp::Any &right_val) {
-    antlrcpp::Any left_value = left_val, right_value = right_val;
-    if (left_value.isNull() && right_value.isNull())
-        return false;
-    if (left_value.isNull() || right_value.isNull()) {
-        if (right_value.isNull())
-            std::swap(left_value, right_value);
-        if (right_value.is<ll>())
-            left_value = ll(0);
-        else if (right_value.is<std::string>())
-            right_value = "";
-        else if (right_value.is<double>())
-            right_value = 0.0;
-        else if (right_value.is<bool>())
-            right_value = false;
-        else while (true)
-                ;
-    }
+bool operator<(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
     if (left_value.is<std::string>() && right_value.is<std::string>())
         return left_value.as<std::string>() < right_value.as<std::string>();
     else if (left_value.is<std::string>() || right_value.is<std::string>())
@@ -223,22 +211,11 @@ bool operator<(const antlrcpp::Any &left_val, const antlrcpp::Any &right_val) {
 
 bool operator>(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) { return right_value < left_value; }
 
-bool operator==(const antlrcpp::Any &left_val, const antlrcpp::Any &right_val) {
-    antlrcpp::Any left_value = left_val, right_value = right_val;
+bool operator==(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
     if (left_value.isNull() && right_value.isNull())
         return true;
-    if (left_value.isNull() || right_value.isNull()) {
-        if (right_value.isNull())
-            std::swap(left_value, right_value);
-        if (right_value.is<ll>())
-            left_value = ll(0);
-        else if (right_value.is<std::string>())
-            right_value = "";
-        else if (right_value.is<double>())
-            right_value = 0.0;
-        else if (right_value.is<bool>())
-            right_value = false;
-    }
+    else if (left_value.isNull() || right_value.isNull())
+        return false;
 
     if (left_value.is<std::string>() && right_value.is<std::string>())
         return left_value.as<std::string>() == right_value.as<std::string>();
@@ -253,13 +230,21 @@ bool operator==(const antlrcpp::Any &left_val, const antlrcpp::Any &right_val) {
 
     if (left_value.is<ll>() && right_value.is<ll>())
         return left_value.as<ll>() == right_value.as<ll>();
-    throw Exception("", UNIMPLEMENTED);
+    return false;
 }
 bool operator>=(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) { return !(left_value < right_value); }
 
 bool operator<=(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) { return !(right_value < left_value); }
 
-bool operator!=(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) { return !(left_value == right_value); }
+bool operator!=(const antlrcpp::Any &left_value, const antlrcpp::Any &right_value) {
+    if (left_value.isNull() || right_value.isNull()) {
+        if (left_value.isNull() && right_value.isNull())
+            return false;
+        else
+            return true;
+    }
+    return !(left_value == right_value);
+}
 
 std::ostream &operator<<(std::ostream &out, const antlrcpp::Any print_num) {
     if (print_num.is<std::string>())
@@ -276,6 +261,6 @@ std::ostream &operator<<(std::ostream &out, const antlrcpp::Any print_num) {
         for (auto print_data : print_num.as<std::vector<antlrcpp::Any>>())
             out << print_data << " ";
     } else
-        throw Exception("", UNIMPLEMENTED);
+        throw Exception("", UNIMPLEMENTED); // TODO
     return out;
 }

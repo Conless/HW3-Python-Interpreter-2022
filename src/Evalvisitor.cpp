@@ -349,7 +349,7 @@ antlrcpp::Any EvalVisitor::visitFactor(Python3Parser::FactorContext *ctx) {
         if (ret.is<ll>())
             ret = -ret.as<ll>();
         if (ret.is<double>())
-            ret = -ret.is<double>();
+            ret = -ret.as<double>();
     }
     return ret;
 }
@@ -396,16 +396,14 @@ antlrcpp::Any EvalVisitor::visitAtom_expr(Python3Parser::Atom_exprContext *ctx) 
         for (int i = 0; i < func_now.para_array.size(); i++)
             var_table.VarRegister(func_now.para_array[i].first, func_now.para_array[i].second, 1);
         stk++;
-        if (scope_func.find(stk) == scope_func.end()) {
-            for (int i = 0; i < argsArray.size(); i++)
+        for (int i = 0; i < argsArray.size(); i++) {
+            if (argsArray[i].is<std::pair<ll, std::string>>()) {
+                std::string var_name = argsArray[i].as<std::pair<ll, std::string>>().second;
+                QueryResult qres = scope_func[stk].VarQuery(var_name);
+                var_table.VarRegister(var_name, qres.data, 1);
+            } else {
                 var_table.VarRegister(func_now.para_array[i].first, argsArray[i], 1);
-        } else {
-            for (int i = 0; i < func_now.para_array.size(); i++) {
-                QueryResult qres = scope_func[stk].VarQuery(func_now.para_array[i].first);
-                if (qres.exist)
-                    var_table.VarRegister(func_now.para_array[i].first, qres.data, 1);
             }
-            scope_func.erase(stk);
         }
         if (show_status) {
             for (int i = 0; i < func_now.para_array.size(); i++)
@@ -502,6 +500,6 @@ antlrcpp::Any EvalVisitor::visitArgument(Python3Parser::ArgumentContext *ctx) {
                                    ->getText();
         auto var_data = visitTest(testArray[1]);
         scope_func[stk].VarRegister(var_name, var_data);
-        return std::make_pair(kAssign, var_data);
+        return std::make_pair(kAssign, var_name);
     }
 }
