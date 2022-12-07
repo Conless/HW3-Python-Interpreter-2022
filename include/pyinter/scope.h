@@ -1,5 +1,5 @@
-#ifndef APPLE_PIE_SCOPE_H
-#define APPLE_PIE_SCOPE_H
+#ifndef PYINTER_SCOPE_H
+#define PYINTER_SCOPE_H
 
 #include <cstring>
 #include <string>
@@ -32,4 +32,4 @@ class Scope {
     void pop();
 };
 
-#endif // APPLE_PIE_SCOPE_H
+#endif // PYINTER_SCOPE_H
