@@ -11,7 +11,6 @@ void OutputFunction(const char *s);
 
 class EvalVisitor : public Python3BaseVisitor {
 
-    // todo:override all methods of Python3BaseVisitor
   public:
     virtual antlrcpp::Any visitFile_input(Python3Parser::File_inputContext *ctx) override;
 
